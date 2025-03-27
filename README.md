@@ -9,7 +9,7 @@ Chương trình quản lý thư viện trên nền console, dành cho việc qu�
 - Không cần lưu trữ dữ liệu xuống tập tin.
 - Không được sử dụng `struct`.
 - Mã nguồn chương trình phải được tổ chức thành các file và các hàm rõ ràng.
-- Trước mỗi hàm, phải có comment mô tả chức năng và tham số của hàm.
+- Trước mỗi hàm, phải có comment mô tả chức năng và tham số truyền vào, giá trị trả về.
 
 ## Các Chức Năng Chính
 

@@ -10,6 +10,8 @@ const int MAX_USERS = 100; // Số lượng độc giả tối đa
 char maDocGia[MAX_USERS][10] = {"DG001", "DG002", "DG003"};
 char hoTen[MAX_USERS][100] = {"Nguyen Thi Lan", "Tran Minh Tu", "Nguyen Van C"};
 char cmnd[MAX_USERS][20] = {"123456789", "987654321", "456789125"};
+char birth[MAX_USERS][11] = {"21/03/1998", "15/05/2000", "13/07/2001"};
+char gioiTinh[MAX_USERS][5] = {"Nu", "Nam", "Nam"};
 char email[MAX_USERS][100] = {"lannt@gmail.com", "tmtu@gmail.com", "nguyenvanc@gmail.com"};
 char diaChi[MAX_USERS][100] = {"123 Le Lai, TP.HCM", "456 Nguyen Thi Minh Khai, TP.HCM", "11 Hong Bang, TPHCM"};
 char ngayLapThe[MAX_USERS][11] = {"01/01/2022", "15/02/2021", "12/09/2023"};
@@ -70,12 +72,14 @@ void xemDanhSachDocGia() {
         return;
     }
     cout << "Danh sach doc gia:\n";
-    cout << "STT | Ma doc gia | Ho ten | CMND | Email | Dia chi | Ngay lap the | Ngay het han\n";
+    cout << "STT | Ma doc gia | Ho ten | CMND | Birthday | Gioi tinh | Email | Dia chi | Ngay lap the | Ngay het han\n";
     for (int i = 0; i < soLuongDocGia; i++) {
         cout << "[" << i + 1 << "]" << " | "
                 << maDocGia[i] << " | "
                 << hoTen[i] << " | "
                 << cmnd[i] << " | "
+                << birth[i] << " | "
+                << gioiTinh[i] << " | "
                 << email[i] << " | "
                 << diaChi[i] << " | "
                 << ngayLapThe[i] << " | "
@@ -91,12 +95,17 @@ void themDocGia() {
     }
 
     cout << "Nhap thong tin doc gia moi:\n";
+
     cout << "Nhap ma doc gia: ";
     cin.getline(maDocGia[soLuongDocGia], 10);
     cout << "Nhap ho ten: ";
     cin.getline(hoTen[soLuongDocGia], 100);
     cout << "Nhap CMND: ";
     cin.getline(cmnd[soLuongDocGia], 20);
+    cout << "Nhap ngay sinh (dd/mm/yyyy): ";
+    cin.getline(birth[soLuongDocGia], 11);
+    cout << "Nhap gioi tinh (Nam/Nu): ";
+    cin.getline(gioiTinh[soLuongDocGia], 5);
     cout << "Nhap email: ";
     cin.getline(email[soLuongDocGia], 100);
     cout << "Nhap dia chi: ";
@@ -115,30 +124,41 @@ void chinhSuaDocGia() {
     cout << "Nhap ma doc gia can chinh sua: ";
     cin.getline(id, 10);
 
+    // Tìm vị trí độc giả cần chỉnh sửa
+    int index = -1;
     for (int i = 0; i < soLuongDocGia; i++) {
         if (strcmp(maDocGia[i], id) == 0) {
-            cout << "Nhap thong tin doc gia can chinh sua:\n";
-
-            cout << "Nhap ma doc gia: ";
-            cin.getline(maDocGia[i], 10);
-            cout << "Nhap ho ten: ";
-            cin.getline(hoTen[i], 100);
-            cout << "Nhap CMND: ";
-            cin.getline(cmnd[i], 20);
-            cout << "Nhap email: ";
-            cin.getline(email[i], 100);
-            cout << "Nhap dia chi: ";
-            cin.getline(diaChi[i], 100);
-            cout << "Nhap ngay lap the (dd/mm/yyyy): ";
-            cin.getline(ngayLapThe[i], 11);
-
-            calculateExpiryDate(ngayLapThe[i], ngayHetHan[i]);
-
-            cout << "[OK] Chinh sua doc gia thanh cong!\n";
-            return;
+            index = i;
+            break;
         }
     }
-    cout << "Doc gia co ma " << id << " khong ton tai.\n";
+    if (index == -1) {
+        cout << "Doc gia co ma " << id << " khong ton tai.\n";
+        return;
+    }
+
+    cout << "Nhap thong tin doc gia can chinh sua:\n";
+
+    cout << "Nhap ma doc gia: ";
+    cin.getline(maDocGia[index], 10);
+    cout << "Nhap ho ten: ";
+    cin.getline(hoTen[index], 100);
+    cout << "Nhap CMND: ";
+    cin.getline(cmnd[index], 20);
+    cout << "Nhap ngay sinh (dd/mm/yyyy): ";
+    cin.getline(birth[soLuongDocGia], 11);
+    cout << "Nhap gioi tinh (Nam/Nu): ";
+    cin.getline(gioiTinh[soLuongDocGia], 5);
+    cout << "Nhap email: ";
+    cin.getline(email[index], 100);
+    cout << "Nhap dia chi: ";
+    cin.getline(diaChi[index], 100);
+    cout << "Nhap ngay lap the (dd/mm/yyyy): ";
+    cin.getline(ngayLapThe[index], 11);
+
+    calculateExpiryDate(ngayLapThe[index], ngayHetHan[index]);
+
+    cout << "[OK] Chinh sua doc gia thanh cong!\n";
 };
 
 void xoaDocGia() {
@@ -165,6 +185,8 @@ void xoaDocGia() {
         strcpy(maDocGia[i], maDocGia[i + 1]);
         strcpy(hoTen[i], hoTen[i + 1]);
         strcpy(cmnd[i], cmnd[i + 1]);
+        strcpy(birth[i], birth[i + 1]);
+        strcpy(gioiTinh[i], gioiTinh[i + 1]);
         strcpy(email[i], email[i + 1]);
         strcpy(diaChi[i], diaChi[i + 1]);
         strcpy(ngayLapThe[i], ngayLapThe[i + 1]);
@@ -184,18 +206,21 @@ void timDocGiaTheoCmnd() {
 
     bool found = false;
     cout << "Danh sach doc gia co CMND " << cmndToFind << ":\n";
-    cout << "STT | Ma doc gia | Ho ten | CMND | Email | Dia chi | Ngay lap the | Ngay het han\n";
+    cout << "STT | Ma doc gia | Ho ten | CMND | Birthday | Gioi tinh | Email | Dia chi | Ngay lap the | Ngay het han\n";
     for (int i = 0; i < soLuongDocGia; i++) {
         if (strcmp(cmnd[i], cmndToFind) == 0) {
             cout << "[" << i + 1 << "]" << " | "
                     << maDocGia[i] << " | "
                     << hoTen[i] << " | "
                     << cmnd[i] << " | "
+                    << birth[i] << " | "
+                    << gioiTinh[i] << " | "
                     << email[i] << " | "
                     << diaChi[i] << " | "
                     << ngayLapThe[i] << " | "
                     << ngayHetHan[i] << "\n";
             found = true;
+            break;
         }
     }
     if (!found) {
@@ -211,13 +236,17 @@ void timDocGiaTheoHoTen() {
 
     bool found = false;
     cout << "Danh sach doc gia co ten - " << hoTenToFind << ":\n";
-    cout << "STT | Ma doc gia | Ho ten | CMND | Email | Dia chi | Ngay lap the | Ngay het han\n";
+    cout << "STT | Ma doc gia | Ho ten | CMND | Birthday | Gioi tinh | Email | Dia chi | Ngay lap the | Ngay het han\n";
+
+    // dùng strstr để lấy tên gần đúng || dùng strcmp để tìm chính xác tên
     for (int i = 0; i < soLuongDocGia; i++) {
-        if (stricmp(hoTen[i], hoTenToFind) == 0) {
+        if (strstr(hoTen[i], hoTenToFind) != NULL) {
             cout << "[" << i + 1 << "]" << " | "
                     << maDocGia[i] << " | "
                     << hoTen[i] << " | "
                     << cmnd[i] << " | "
+                    << birth[i] << " | "
+                    << gioiTinh[i] << " | "
                     << email[i] << " | "
                     << diaChi[i] << " | "
                     << ngayLapThe[i] << " | "

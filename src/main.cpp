@@ -2,6 +2,7 @@
 #include <iostream>
 #include "menu.cpp"
 #include "user.cpp"
+#include "book.cpp"
 using namespace std;
 
 int main() {
@@ -16,6 +17,7 @@ int main() {
                 break;
             case 2:
                 cout << "===== QUAN LY SACH =====" << endl;
+                quanLySach();
                 break;
             case 3:
                 cout << "===== LAP PHIEU MUON SACH =====" << endl;
@@ -26,7 +28,7 @@ int main() {
             case 5:
                 cout << "===== THONG KE =====" << endl;
                 break;
-            case 6:
+            case 0:
                 cout << "===== THOAT CHUONG TRINH =====" << endl;
                 exit(0);
             default:

@@ -87,20 +87,12 @@ Mỗi phiếu mượn/trả sách chứa thông tin về:
 
 ## Cấu Trúc Dự Án
 ```
-├── src/
-│   ├── main.cpp               # File chính của chương trình
-│   ├── library.cpp            # Các hàm quản lý thư viện
-│   ├── user.cpp               # Các hàm quản lý độc giả
-│   ├── book.cpp               # Các hàm quản lý sách
-│   ├── borrow_return.cpp      # Các hàm quản lý phiếu mượn/trả
-│   ├── statistics.cpp         # Các hàm thống kê
-│   ├── utils.cpp              # Các hàm tiện ích
-│   ├── menu.cpp               # Các hàm hiển thị menu
-│   ├── library.h              # Header file
-│   ├── user.h                 # Header file
-│   ├── book.h                 # Header file
-│   ├── borrow_return.h        # Header file
-│   ├── statistics.h           # Header file
-│   ├── utils.h                # Header file
-└── README.md                  # Tài liệu hướng dẫn sử dụng dự án
+/src
+├── main.cpp               # Menu chính
+├── menu.cpp / .h          # Hiển thị menu
+├── user.cpp / .h          # Quản lý độc giả
+├── book.cpp / .h          # Quản lý sách
+├── borrow.cpp / .h        # Quản lý phiếu mượn/trả
+├── statistics.cpp / .h    # Thống kê
+├── utils.cpp / .h         # Hàm tiện ích
 ```

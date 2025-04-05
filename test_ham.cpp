@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include "utils.h"
-using namespace std;
 
 void calculateExpiryDate(const char* startDate, char* expiryDate) {
     int day, month, year;
@@ -21,5 +19,16 @@ void calculateExpiryDate(const char* startDate, char* expiryDate) {
     }
 
     // Lưu ngày hết hạn vào mảng expiryDate
-    sprintf(expiryDate, "%02d/%02d/%d", day, month, year);
+    sprintf(expiryDate, "%02d-%02d-%d", day, month, year);
+}
+
+int main () {
+    char startDate[11] = "04/04/2025";
+    char expiryDate[11];
+
+    calculateExpiryDate(startDate, expiryDate);
+
+    printf("Expiry Date: %s\n", expiryDate);
+
+    return 0;
 }

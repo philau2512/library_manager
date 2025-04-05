@@ -11,6 +11,6 @@ void showMenu() {
     cout << "3. Lap phieu muon sach\n";
     cout << "4. Lap phieu tra sach\n";
     cout << "5. Thong ke\n";
-    cout << "6. Thoat\n";
+    cout << "6. Thoat chuong trinh\n";
     cout << "--> Chon chuc nang: ";
 }

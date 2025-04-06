@@ -68,10 +68,16 @@ Mỗi sách sẽ có các thông tin như sau:
 - Số lượng quyển sách
 
 ### 3. Phiếu Mượn/Trả
-Mỗi phiếu mượn/trả sách chứa thông tin về:
+#### Phiếu mượn:
 - Mã độc giả
-- Ngày mượn, ngày trả dự kiến và ngày trả thực tế
-- Danh sách ISBN của các sách được mượn
+- Ngày mượn
+- Ngày trả dự kiến
+- Danh sách ISBN mượn
+#### Phiếu trả:
+- Mã độc giả
+- Ngày mượn
+- Ngày trả thực tế
+- Danh sách ISBN trả
 
 ## Các Quy Định
 - Mỗi sách có thể được mượn tối đa 7 ngày. Nếu quá hạn, sẽ bị phạt tiền 5.000 đồng mỗi ngày.

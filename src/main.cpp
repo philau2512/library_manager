@@ -1,8 +1,9 @@
-#include <cstdio>
 #include <iostream>
-#include "menu.cpp"
-#include "user.cpp"
-#include "book.cpp"
+#include "menu.h"
+#include "user.h"
+#include "book.h"
+#include "borrow.h"
+#include "utils.h"
 using namespace std;
 
 int main() {
@@ -21,6 +22,7 @@ int main() {
                 break;
             case 3:
                 cout << "===== LAP PHIEU MUON SACH =====" << endl;
+                quanLyMuonSach();
                 break;
             case 4:
                 cout << "===== LAP PHIEU TRA SACH =====" << endl;
@@ -36,6 +38,4 @@ int main() {
                 break;
         }
     }
-
-    return 0;
 }

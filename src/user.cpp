@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string.h>
 #include "user.h"
-#include "utils.cpp"
+#include "utils.h"
 using namespace std;
 
-const int MAX_USERS = 100; // Số lượng độc giả tối đa
+int soLuongDocGia = 3; // Số lượng độc giả hiện tại
 
-// Tạo danh sách mặc định của độc giả
+// Tạo danh sách độc giả demo
 char maDocGia[MAX_USERS][10] = {"DG001", "DG002", "DG003"};
 char hoTen[MAX_USERS][100] = {"Nguyen Thi Lan", "Tran Minh Tu", "Nguyen Van C"};
 char cmnd[MAX_USERS][20] = {"123456789", "987654321", "456789125"};
@@ -16,8 +16,6 @@ char email[MAX_USERS][100] = {"lannt@gmail.com", "tmtu@gmail.com", "nguyenvanc@g
 char diaChi[MAX_USERS][100] = {"123 Le Lai, TP.HCM", "456 Nguyen Thi Minh Khai, TP.HCM", "11 Hong Bang, TPHCM"};
 char ngayLapThe[MAX_USERS][11] = {"01/01/2022", "15/02/2021", "12/09/2023"};
 char ngayHetHan[MAX_USERS][11] = {"01/01/2026", "15/02/2025", "12/09/2027"};
-
-int soLuongDocGia = 3; // Số lượng độc giả hiện tại
 
 // Hàm hiển thị menu quản lý độc giả
 void showMenuDocGia() {
@@ -136,6 +134,8 @@ void chinhSuaDocGia() {
         cout << "Doc gia co ma " << id << " khong ton tai.\n";
         return;
     }
+
+    cin.ignore();
 
     cout << "Nhap thong tin doc gia can chinh sua:\n";
 
@@ -259,3 +259,12 @@ void timDocGiaTheoHoTen() {
     }
     cout << endl;
 };
+
+bool tonTaiMaDocGia(const char *id) {
+    for (int i = 0; i < soLuongDocGia; i++) {
+        if (strcmp(maDocGia[i], id) == 0) {
+            return true;
+        }
+    }
+    return false;
+}

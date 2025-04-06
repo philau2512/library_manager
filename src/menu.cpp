@@ -1,8 +1,7 @@
 #include <iostream>
-using namespace std;
 #include "menu.h"
+using namespace std;
 
-// Hàm hiển thị menu chọn chức năng
 void showMenu() {
     cout << "===== QUAN LY THU VIEN =====\n";
     cout << "1. Quan ly doc gia\n";

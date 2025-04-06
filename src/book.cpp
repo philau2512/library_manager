@@ -1,18 +1,19 @@
 #include <iostream>
+#include <string.h>
 #include "book.h"
 using namespace std;
 
-const int MAX_BOOKS = 100; // Số lượng sách tối đa
-
-// Tạo danh sách Sách mặc định
+// Tạo danh sách Sách demo
 char maSach[MAX_BOOKS][10] = {"B001", "B002", "B003", "B004", "B005"};
-char tenSach[MAX_BOOKS][100] = {"Toi Tham Mieu", "Doi Moi", "Viet Nam Lua Chon", "Cac Cuon Sach Hay", "Tinh Yeu Va Cuoc Song"};
+char tenSach[MAX_BOOKS][100] = {
+    "Toi Tham Mieu", "Doi Moi", "Viet Nam Lua Chon", "Cac Cuon Sach Hay", "Tinh Yeu Va Cuoc Song"
+};
 char tacGia[MAX_BOOKS][100] = {"Author 1", "Author 2", "Author 3", "Author 4", "Author 5"};
 char nhaXuatBan[MAX_BOOKS][100] = {"Kim Dong", "Nha Xuat Ban Tre", "Alpha Books", "Thai Ha Books", "NXB Giao Duc"};
 char namXuatBan[MAX_BOOKS][10] = {"2024", "2023", "2022", "2021", "2020"};
 char theLoai[MAX_BOOKS][50] = {"Van Hoc", "Kinh Te", "Khoa Hoc", "Ly Thuyet", "Chinh Tri"};
 double giaSach[MAX_BOOKS] = {10000.0, 15000.5, 20000.75, 12000.25, 8000.0};
-int soLuong[MAX_BOOKS] = {5, 3, 8, 10, 2};
+int soLuong[MAX_BOOKS] = {5, 3, 2, 0, 1};
 
 int soLuongSach = 5; // tổng số lượng sách có trong thư viện
 
@@ -250,4 +251,42 @@ void timSachTheoTen() {
         cout << "Khong tim thay sach co ten '" << tenSachToSearch << "'.\n";
     }
     cout << endl;
+}
+
+bool tonTaiMaSach(const char *id) {
+    for (int i = 0; i < soLuongSach; i++) {
+        if (strcmp(maSach[i], id) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool coTheMuonSach(const char *id) {
+    for (int i = 0; i < soLuongSach; i++) {
+        if (strcmp(maSach[i], id) == 0 && soLuong[i] > 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool giamSoLuongSach(const char *id) {
+    for (int i = 0; i < soLuongSach; i++) {
+        if (strcmp(maSach[i], id) == 0) {
+            soLuong[i]--;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool tangSoLuongSach(const char *id) {
+    for (int i = 0; i < soLuongSach; i++) {
+        if (strcmp(maSach[i], id) == 0) {
+            soLuong[i]++;
+            return true;
+        }
+    }
+    return false;
 }

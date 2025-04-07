@@ -23,12 +23,14 @@ void xemSach(); // Xem danh sách sách có trong thư viện
 void themSach(); // Thêm sách mới
 void chinhSuaSach(); // Chỉnh sửa sách
 void xoaSach(); // Xóa sách
-void timSachTheoISBN(); // Tìm sách theo mã sách
-void timSachTheoTen(); // Tìm sách theo tên sách
+int timSachTheoISBN(); // Tìm sách theo mã sách trả về index
+int timSachTheoTen(); // Tìm sách theo tên sách trả về index
 
 bool tonTaiMaSach(const char *id); // kiểm tra sự tồn tại của mã sách ( true/false )
 bool coTheMuonSach(const char *id); // Kiểm tra nếu số lượng sách > 0 thì cho mượn !
 bool giamSoLuongSach(const char *id); // Giảm số lượng sách khi mượn
 bool tangSoLuongSach(const char *id); // Tăng số lượng sách khi trả
+
+void printBookInfo(int index); // Hàm in thông tin sách theo index
 
 #endif // BOOK_H

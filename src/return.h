@@ -1,9 +1,12 @@
 #ifndef RETURN_H
 #define RETURN_H
+#include "data.h"
 
-extern char maDocGiaTra[10];
-extern char ngayTraThucTe[11];
-extern char danhSachISBNTra[5][10];
+extern int soLuongPhieuTra;
+
+extern char maDocGiaTra[MAX_RETURN_RECORDS][MAX_DOC_GIA_ID_LENGTH];
+extern char ngayTraThucTe[MAX_RETURN_RECORDS][MAX_DATE_LENGTH];
+extern char danhSachISBNTra[MAX_RETURN_RECORDS][MAX_BOOKS_PER_RECORD][MAX_ISBN_LENGTH];
 
 void quanLyTraSach(); // Hàm quản lý trả sách
 void showMenuTraSach(); // Hàm show menu chức năng trả

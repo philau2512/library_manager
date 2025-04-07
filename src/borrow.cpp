@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "borrow.h"
 #include "utils.h"
 #include "user.h"
@@ -6,10 +7,10 @@
 using namespace std;
 
 // Định nghĩa và khởi tạo các mảng lưu trữ thông tin phiếu mượn ( dữ liệu demo )
-char maDocGiaMuon[MAX_BORROW_RECORDS][10] = {"DG001", "DG002"};
-char ngayMuon[MAX_BORROW_RECORDS][11] = {"01/01/2025", "15/02/2025"};
-char ngayTraDuKien[MAX_BORROW_RECORDS][11] = {"05/01/2025", "15/03/2025"};
-char danhSachISBNMuon[MAX_BORROW_RECORDS][MAX_BOOKS_PER_BORROW_RECORD][10] = {
+char maDocGiaMuon[MAX_BORROW_RECORDS][MAX_DOC_GIA_ID_LENGTH] = {"DG001", "DG002"};
+char ngayMuon[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"01/01/2025", "15/02/2025"};
+char ngayTraDuKien[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"05/01/2025", "15/03/2025"};
+char danhSachISBNMuon[MAX_BORROW_RECORDS][MAX_BOOKS_PER_RECORD][MAX_ISBN_LENGTH] = {
     {"B001", "B002", "B003", "B004", "B005"}, // mảng ISBN cho DG001
     {"B003", "B004"} // mảng ISBN cho DG002
 };
@@ -62,8 +63,8 @@ void lapPhieuMuonSach() {
     cout << "Nhap so luong sach muon: ";
     cin >> numBookBorrow;
 
-    if (numBookBorrow > MAX_BOOKS_PER_BORROW_RECORD) {
-        cout << "[X] So luong sach muon khong duoc qua " << MAX_BOOKS_PER_BORROW_RECORD << "." << endl;
+    if (numBookBorrow > MAX_BOOKS_PER_RECORD) {
+        cout << "[X] So luong sach muon khong duoc qua " << MAX_BOOKS_PER_RECORD << "." << endl;
         return;
     }
 
@@ -74,8 +75,10 @@ void lapPhieuMuonSach() {
         cout << "Nhap ma IBSN thu " << i + 1 << ": ";
         cin.getline(danhSachISBNMuon[soLuongPhieuMuon][i], 10);
 
-        if (tonTaiMaSach(danhSachISBNMuon[soLuongPhieuMuon][i])) { // kiểm tra mã sách tồn tại
-            if (coTheMuonSach(danhSachISBNMuon[soLuongPhieuMuon][i])) { // kiểm tra số lượng sách đó > 0
+        if (tonTaiMaSach(danhSachISBNMuon[soLuongPhieuMuon][i])) {
+            // kiểm tra mã sách tồn tại
+            if (coTheMuonSach(danhSachISBNMuon[soLuongPhieuMuon][i])) {
+                // kiểm tra số lượng sách đó > 0
                 bool status = giamSoLuongSach(danhSachISBNMuon[soLuongPhieuMuon][i]); // giảm 1 cuốn đã cho mượn
                 if (!status) {
                     cout << "[X] Loi khi them sach - " << danhSachISBNMuon[soLuongPhieuMuon][i] << endl;
@@ -108,7 +111,7 @@ void hienThiPhieuMuon() {
         cout << "Ngay muon: " << ngayMuon[i] << endl;
         cout << "Ngay tra du kien: " << ngayTraDuKien[i] << endl;
         cout << "Danh sach ISBN muon:" << endl;
-        for (int j = 0; j < MAX_BOOKS_PER_BORROW_RECORD; j++) {
+        for (int j = 0; j < MAX_BOOKS_PER_RECORD; j++) {
             if (danhSachISBNMuon[i][j][0] != '\0') {
                 cout << danhSachISBNMuon[i][j] << "\t";
             } else {
@@ -118,4 +121,15 @@ void hienThiPhieuMuon() {
         cout << endl;
         cout << "---------------------------------------" << endl;
     }
+}
+
+int timPhieuMuon(const char *id) {
+    int index = -1;
+    for (int i = 0; i < soLuongPhieuMuon; i++) {
+        if (strcmp(maDocGiaMuon[i], id) == 0) {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }

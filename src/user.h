@@ -1,19 +1,21 @@
 #ifndef USER_H
 #define USER_H
 
+#include "data.h"
+
 // Khai báo số lượng tối đa độc giả
 const int MAX_USERS = 100;
 
 // Khai báo các mảng thông tin độc giả
-extern char maDocGia[MAX_USERS][10];
-extern char hoTen[MAX_USERS][100];
-extern char cmnd[MAX_USERS][20];
-extern char birth[MAX_USERS][11];
-extern char gioiTinh[MAX_USERS][5];
-extern char email[MAX_USERS][100];
-extern char diaChi[MAX_USERS][100];
-extern char ngayLapThe[MAX_USERS][11];
-extern char ngayHetHan[MAX_USERS][11];
+extern char maDocGia[MAX_USERS][MAX_DOC_GIA_ID_LENGTH];
+extern char hoTen[MAX_USERS][MAX_TEXT_LENGTH];
+extern char cmnd[MAX_USERS][MAX_TEXT_LENGTH];
+extern char birth[MAX_USERS][MAX_DATE_LENGTH];
+extern char gioiTinh[MAX_USERS][MAX_GENDER_LENGTH];
+extern char email[MAX_USERS][MAX_TEXT_LENGTH];
+extern char diaChi[MAX_USERS][MAX_TEXT_LENGTH];
+extern char ngayLapThe[MAX_USERS][MAX_DATE_LENGTH];
+extern char ngayHetHan[MAX_USERS][MAX_DATE_LENGTH];
 
 // Số lượng độc giả hiện có
 extern int soLuongDocGia;

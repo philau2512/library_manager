@@ -3,7 +3,7 @@
 #include "user.h"
 #include "book.h"
 #include "borrow.h"
-#include "utils.h"
+#include "return.h"
 using namespace std;
 
 int main() {
@@ -26,6 +26,7 @@ int main() {
                 break;
             case 4:
                 cout << "===== LAP PHIEU TRA SACH =====" << endl;
+                quanLyTraSach();
                 break;
             case 5:
                 cout << "===== THONG KE =====" << endl;

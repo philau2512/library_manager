@@ -30,6 +30,7 @@ void showMenuQuanLySach() {
 
 void quanLySach() {
     int choice;
+    int indexBook = -1;
     do {
         showMenuQuanLySach();
         cin >> choice;
@@ -48,10 +49,20 @@ void quanLySach() {
                 xoaSach();
                 break;
             case 5:
-                timSachTheoISBN();
+                indexBook = timSachTheoISBN();
+                if (indexBook == -1) {
+                    cout << "[X] Khong tim thay sach !." << endl;
+                } else {
+                    printBookInfo(indexBook);
+                }
                 break;
             case 6:
-                timSachTheoTen();
+                indexBook = timSachTheoTen();
+                if (indexBook == -1) {
+                    cout << "[X] Khong tim thay sach !." << endl;
+                } else {
+                    printBookInfo(indexBook);
+                }
                 break;
             case 0:
                 cout << "Quay lai menu chinh...\n";
@@ -185,7 +196,7 @@ void xoaSach() {
     cout << "[OK] Xoa sach co ISBN " << maSachToDelete << " thanh cong!\n";
 }
 
-void timSachTheoISBN() {
+int timSachTheoISBN() {
     char maSachToSearch[10];
     cout << "Nhap ma sach can tim: ";
     cin.getline(maSachToSearch, 10);
@@ -198,59 +209,30 @@ void timSachTheoISBN() {
             break;
         }
     }
-    if (foundIndex == -1) {
-        cout << "Khong tim thay sach co ma '" << maSachToSearch << "'.\n";
-        return;
-    }
-
-    cout << "Thong tin sach co ma '" << maSachToSearch << "':\n";
-    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong\n";
-    for (int i = 0; i < soLuongSach; i++) {
-        if (strcmp(maSachToSearch, maSach[i]) == 0) {
-            cout << "[" << i + 1 << "]" << " | "
-                    << maSach[i] << " | "
-                    << tenSach[i] << " | "
-                    << tacGia[i] << " | "
-                    << nhaXuatBan[i] << " | "
-                    << namXuatBan[i] << " | "
-                    << theLoai[i] << " | "
-                    << giaSach[i] << " | "
-                    << soLuong[i] << "\n";
-            break;
-        }
-    }
+    return foundIndex;
 }
 
-void timSachTheoTen() {
+int timSachTheoTen() {
     char tenSachToSearch[100];
     cout << "Nhap ten sach can tim: ";
     cin.getline(tenSachToSearch, 100);
 
     // Tìm sách theo tên
-    bool found = false;
-
-    cout << "List sach co ten '" << tenSachToSearch << "':\n";
-    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong\n";
+    int foundIndex = -1;
 
     // dùng strstr để lấy tên gần đúng ( có phân biệt hoa thường ) || dùng strcmp để tìm chính xác tên
     for (int i = 0; i < soLuongSach; i++) {
-        if (strstr(tenSach[i], tenSachToSearch) != NULL) {
-            cout << "[" << i + 1 << "]" << " | "
-                    << maSach[i] << " | "
-                    << tenSach[i] << " | "
-                    << tacGia[i] << " | "
-                    << nhaXuatBan[i] << " | "
-                    << namXuatBan[i] << " | "
-                    << theLoai[i] << " | "
-                    << giaSach[i] << " | "
-                    << soLuong[i] << "\n";
-            found = true;
+        char temp[100];
+        strcpy(temp, tenSach[i]);
+        strlwr(temp);
+        strlwr(tenSachToSearch);
+
+        if (strstr(temp, tenSachToSearch) != NULL) {
+            foundIndex = i;
+            break;
         }
     }
-    if (!found) {
-        cout << "Khong tim thay sach co ten '" << tenSachToSearch << "'.\n";
-    }
-    cout << endl;
+    return foundIndex;
 }
 
 bool tonTaiMaSach(const char *id) {
@@ -289,4 +271,18 @@ bool tangSoLuongSach(const char *id) {
         }
     }
     return false;
+}
+
+void printBookInfo(int index) {
+    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong\n";
+    cout << "[" << index + 1 << "]" << " | "
+            << maSach[index] << " | "
+            << tenSach[index] << " | "
+            << tacGia[index] << " | "
+            << nhaXuatBan[index] << " | "
+            << namXuatBan[index] << " | "
+            << theLoai[index] << " | "
+            << giaSach[index] << " | "
+            << soLuong[index] << "\n";
+    cout << endl;
 }

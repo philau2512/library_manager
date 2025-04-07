@@ -7,9 +7,9 @@ using namespace std;
 int soLuongDocGia = 3; // Số lượng độc giả hiện tại
 
 // Tạo danh sách độc giả demo
-char maDocGia[MAX_USERS][10] = {"DG001", "DG002", "DG003"};
-char hoTen[MAX_USERS][100] = {"Nguyen Thi Lan", "Tran Minh Tu", "Nguyen Van C"};
-char cmnd[MAX_USERS][20] = {"123456789", "987654321", "456789125"};
+char maDocGia[MAX_USERS][MAX_DOC_GIA_ID_LENGTH] = {"DG001", "DG002", "DG003"};
+char hoTen[MAX_USERS][MAX_TEXT_LENGTH] = {"Nguyen Thi Lan", "Tran Minh Tu", "Nguyen Van C"};
+char cmnd[MAX_USERS][MAX_TEXT_LENGTH] = {"123456789", "987654321", "456789125"};
 char birth[MAX_USERS][11] = {"21/03/1998", "15/05/2000", "13/07/2001"};
 char gioiTinh[MAX_USERS][5] = {"Nu", "Nam", "Nam"};
 char email[MAX_USERS][100] = {"lannt@gmail.com", "tmtu@gmail.com", "nguyenvanc@gmail.com"};

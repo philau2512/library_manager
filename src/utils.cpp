@@ -11,7 +11,7 @@ inline bool isLeapYear(int year) {
 }
 
 // hàm tự động tính ngày hết hạn thẻ đọc giả (48 tháng)
-void calculateExpiryDate(const char* startDate, char* expiryDate) {
+void calculateExpiryDate(const char *startDate, char *expiryDate) {
     int day, month, year;
     sscanf(startDate, "%d/%d/%d", &day, &month, &year);
 
@@ -45,8 +45,8 @@ void tinhNgayTraSachDuKien(const char *startDate, char *expiryDate) {
 
     // Kiểm tra nếu ngày vượt quá số ngày trong tháng thì cộng thêm tháng
     while (day > daysInMonth[month - 1]) {
-        day = day - daysInMonth[month - 1];  // Giảm số ngày đi theo tháng
-        month++;  // Thêm tháng
+        day = day - daysInMonth[month - 1]; // Giảm số ngày đi theo tháng
+        month++; // Thêm tháng
         if (month > 12) {
             month = 1;
             year++;
@@ -55,5 +55,48 @@ void tinhNgayTraSachDuKien(const char *startDate, char *expiryDate) {
 
     // Lưu ngày trả sách dự kiện vào mảng expiryDate
     sprintf(expiryDate, "%02d/%02d/%d", day, month, year);
+}
 
+int isExpired(const char *ngayMuon, const char *ngayTraThucTe) {
+    int dayMuon, monthMuon, yearMuon;
+    int dayTra, monthTra, yearTra;
+    sscanf(ngayMuon, "%d/%d/%d", &dayMuon, &monthMuon, &yearMuon);
+    sscanf(ngayTraThucTe, "%d/%d/%d", &dayTra, &monthTra, &yearTra);
+
+    // Tính tổng số ngày kể từ ngày đầu năm
+    int daysMuon = 0;
+    for (int i = 1; i < monthMuon; i++) {
+        if (i == 2) {
+            daysMuon += isLeapYear(yearMuon) ? 29 : 28;
+        } else if (i == 4 || i == 6 || i == 9 || i == 11) {
+            daysMuon += 30;
+        } else {
+            daysMuon += 31;
+        }
+    }
+    daysMuon += dayMuon;
+
+    int daysTra = 0;
+    for (int i = 1; i < monthTra; i++) {
+        if (i == 2) {
+            daysTra += isLeapYear(yearTra) ? 29 : 28;
+        } else if (i == 4 || i == 6 || i == 9 || i == 11) {
+            daysTra += 30;
+        } else {
+            daysTra += 31;
+        }
+    }
+    daysTra += dayTra;
+
+    // Tính số ngày chênh lệch giữa các năm
+    int daysDiff = 0;
+    for (int i = yearMuon; i < yearTra; i++) {
+        daysDiff += isLeapYear(i) ? 366 : 365;
+    }
+
+    // Tính tổng số ngày chênh lệch
+    daysDiff = daysDiff + daysTra - daysMuon;
+
+    // Trả về số ngày quá hạn (trễ hạn)
+    return daysDiff - 7;
 }

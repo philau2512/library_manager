@@ -4,6 +4,7 @@
 #include "book.h"
 #include "borrow.h"
 #include "return.h"
+#include "statistics.h"
 using namespace std;
 
 int main() {
@@ -30,6 +31,7 @@ int main() {
                 break;
             case 5:
                 cout << "===== THONG KE =====" << endl;
+                quanLyThongKe();
                 break;
             case 0:
                 cout << "===== THOAT CHUONG TRINH =====" << endl;

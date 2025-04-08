@@ -10,12 +10,14 @@ int soLuongDocGia = 3; // Số lượng độc giả hiện tại
 char maDocGia[MAX_USERS][MAX_DOC_GIA_ID_LENGTH] = {"DG001", "DG002", "DG003"};
 char hoTen[MAX_USERS][MAX_TEXT_LENGTH] = {"Nguyen Thi Lan", "Tran Minh Tu", "Nguyen Van C"};
 char cmnd[MAX_USERS][MAX_TEXT_LENGTH] = {"123456789", "987654321", "456789125"};
-char birth[MAX_USERS][11] = {"21/03/1998", "15/05/2000", "13/07/2001"};
-char gioiTinh[MAX_USERS][5] = {"Nu", "Nam", "Nam"};
-char email[MAX_USERS][100] = {"lannt@gmail.com", "tmtu@gmail.com", "nguyenvanc@gmail.com"};
-char diaChi[MAX_USERS][100] = {"123 Le Lai, TP.HCM", "456 Nguyen Thi Minh Khai, TP.HCM", "11 Hong Bang, TPHCM"};
-char ngayLapThe[MAX_USERS][11] = {"01/01/2022", "15/02/2021", "12/09/2023"};
-char ngayHetHan[MAX_USERS][11] = {"01/01/2026", "15/02/2025", "12/09/2027"};
+char birth[MAX_USERS][MAX_DATE_LENGTH] = {"21/03/1998", "15/05/2000", "13/07/2001"};
+char gioiTinh[MAX_USERS][MAX_GENDER_LENGTH] = {"Nu", "Nam", "Nam"};
+char email[MAX_USERS][MAX_TEXT_LENGTH] = {"lannt@gmail.com", "tmtu@gmail.com", "nguyenvanc@gmail.com"};
+char diaChi[MAX_USERS][MAX_TEXT_LENGTH] = {
+    "123 Le Lai, TP.HCM", "456 Nguyen Thi Minh Khai, TP.HCM", "11 Hong Bang, TPHCM"
+};
+char ngayLapThe[MAX_USERS][MAX_DATE_LENGTH] = {"01/01/2022", "15/02/2021", "12/09/2023"};
+char ngayHetHan[MAX_USERS][MAX_DATE_LENGTH] = {"01/01/2026", "15/02/2025", "12/09/2027"};
 
 // Hàm hiển thị menu quản lý độc giả
 void showMenuDocGia() {

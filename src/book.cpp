@@ -11,7 +11,7 @@ char tenSach[MAX_BOOKS][100] = {
 char tacGia[MAX_BOOKS][100] = {"Author 1", "Author 2", "Author 3", "Author 4", "Author 5"};
 char nhaXuatBan[MAX_BOOKS][100] = {"Kim Dong", "Nha Xuat Ban Tre", "Alpha Books", "Thai Ha Books", "NXB Giao Duc"};
 char namXuatBan[MAX_BOOKS][10] = {"2024", "2023", "2022", "2021", "2020"};
-char theLoai[MAX_BOOKS][50] = {"Van Hoc", "Kinh Te", "Khoa Hoc", "Ly Thuyet", "Chinh Tri"};
+char theLoai[MAX_BOOKS][50] = {"Van Hoc", "Kinh Te", "Van Hoc", "Kinh Te", "Van Hoc"};
 double giaSach[MAX_BOOKS] = {10000.0, 15000.5, 20000.75, 12000.25, 8000.0};
 int soLuong[MAX_BOOKS] = {5, 3, 2, 0, 1};
 

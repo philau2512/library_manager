@@ -7,7 +7,7 @@ using namespace std;
 
 // Mảng dữ liệu mẫu
 char maDocGiaTra[MAX_RETURN_RECORDS][MAX_DOC_GIA_ID_LENGTH] = {"DG001"};
-char ngayTraThucTe[MAX_RETURN_RECORDS][MAX_DATE_LENGTH] = {"05/01/2025"};
+char ngayTraThucTe[MAX_RETURN_RECORDS][MAX_DATE_LENGTH] = {"05/02/2025"};
 char danhSachISBNTra[MAX_RETURN_RECORDS][MAX_BOOKS_PER_RECORD][MAX_ISBN_LENGTH] = {
     {"B001", "B002", "B003", "B004", "B005"}
 };

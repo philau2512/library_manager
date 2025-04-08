@@ -1,34 +1,61 @@
 #include <stdio.h>
+#include <iostream>
+using namespace std;
 
-void calculateExpiryDate(const char* startDate, char* expiryDate) {
-    int day, month, year;
-    sscanf(startDate, "%d/%d/%d", &day, &month, &year);
+// Hàm tính xem ngày trả thực tế - ngày mượn xem có > 7 không
+bool isExpired(const char* ngayMuon, const char* ngayTraThucTe) {
+    int dayMuon, monthMuon, yearMuon;
+    int dayTra, monthTra, yearTra;
+    sscanf(ngayMuon, "%d/%d/%d", &dayMuon, &monthMuon, &yearMuon);
+    sscanf(ngayTraThucTe, "%d/%d/%d", &dayTra, &monthTra, &yearTra);
 
-    month += 48; // Cộng 48 tháng (4 năm)
-
-    // Kiểm tra nếu tháng > 12 thì cộng thêm năm và làm lại tháng
-    if (month > 12) {
-        year += month / 12; // Cộng thêm năm
-        month = month % 12; // Lấy tháng còn lại (từ 1 đến 12)
+    // Tính toán số ngày kể từ ngày đầu tiên của năm
+    int daysMuon = 0;
+    for (int i = 1; i < monthMuon; i++) {
+        if (i == 2) {
+            if ((yearMuon % 4 == 0 && yearMuon % 100 != 0) || yearMuon % 400 == 0) {
+                daysMuon += 29;
+            } else {
+                daysMuon += 28;
+            }
+        } else if (i == 4 || i == 6 || i == 9 || i == 11) {
+            daysMuon += 30;
+        } else {
+            daysMuon += 31;
+        }
     }
+    daysMuon += dayMuon;
 
-    // Nếu tháng = 0, thì chỉnh lại tháng thành 12 và giảm năm đi 1
-    if (month == 0) {
-        month = 12;
-        year--;
+    int daysTra = 0;
+    for (int i = 1; i < monthTra; i++) {
+        if (i == 2) {
+            if ((yearTra % 4 == 0 && yearTra % 100 != 0) || yearTra % 400 == 0) {
+                daysTra += 29;
+            } else {
+                daysTra += 28;
+            }
+        } else if (i == 4 || i == 6 || i == 9 || i == 11) {
+            daysTra += 30;
+        } else {
+            daysTra += 31;
+        }
     }
+    daysTra += dayTra;
 
-    // Lưu ngày hết hạn vào mảng expiryDate
-    sprintf(expiryDate, "%02d-%02d-%d", day, month, year);
+    // Tính toán số ngày chênh lệch
+    int daysDiff = (yearTra - yearMuon) * 365 + daysTra - daysMuon;
+
+    // So sánh số ngày
+    return daysDiff > 7;
 }
 
 int main () {
-    char startDate[11] = "04/04/2025";
-    char expiryDate[11];
+    char startDate[11] = "25/02/2025";
+    char expiryDate[11] = "05/03/2025";
 
-    calculateExpiryDate(startDate, expiryDate);
+    bool status = isExpired(startDate, expiryDate);
 
-    printf("Expiry Date: %s\n", expiryDate);
+    cout << "status : " << status << endl;
 
     return 0;
 }

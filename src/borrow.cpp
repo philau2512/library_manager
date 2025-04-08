@@ -8,8 +8,8 @@ using namespace std;
 
 // Định nghĩa và khởi tạo các mảng lưu trữ thông tin phiếu mượn ( dữ liệu demo )
 char maDocGiaMuon[MAX_BORROW_RECORDS][MAX_DOC_GIA_ID_LENGTH] = {"DG001", "DG002"};
-char ngayMuon[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"01/01/2025", "15/02/2025"};
-char ngayTraDuKien[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"05/01/2025", "15/03/2025"};
+char ngayMuon[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"28/01/2025", "15/02/2025"};
+char ngayTraDuKien[MAX_BORROW_RECORDS][MAX_DATE_LENGTH] = {"03/02/2025", "22/02/2025"};
 char danhSachISBNMuon[MAX_BORROW_RECORDS][MAX_BOOKS_PER_RECORD][MAX_ISBN_LENGTH] = {
     {"B001", "B002", "B003", "B004", "B005"}, // mảng ISBN cho DG001
     {"B003", "B004"} // mảng ISBN cho DG002

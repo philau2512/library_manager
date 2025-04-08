@@ -96,13 +96,19 @@ void xemSach() {
 
 void themSach() {
     if (soLuongSach >= MAX_BOOKS) {
-        cout << "Danh sach sach day. Khong the them moi.\n";
+        cout << "[X] Danh sach sach day. Khong the them moi.\n";
         return;
     }
     cout << "Nhap thong tin sach moi:\n";
 
     cout << "Ma Sach: ";
     cin.getline(maSach[soLuongSach], 10);
+
+    if (tonTaiMaSach(maSach[soLuongSach])) {
+        cout << "[X] Ma sach da ton tai. Khong the them moi.\n";
+        return;
+    }
+
     cout << "Ten Sach: ";
     cin.getline(tenSach[soLuongSach], 100);
     cout << "Tac Gia: ";
@@ -140,10 +146,8 @@ void chinhSuaSach() {
         return;
     }
 
-    cout << "Nhap thong tin sach muon chinh sua:\n";
+    cout << "Nhap thong tin sach " << maSachToEdit<< " muon chinh sua:\n";
 
-    cout << "Ma Sach: ";
-    cin.getline(maSach[index], 10);
     cout << "Ten Sach: ";
     cin.getline(tenSach[index], 100);
     cout << "Tac Gia: ";

@@ -90,7 +90,7 @@ void xemDanhSachDocGia() {
 
 void themDocGia() {
     if (soLuongDocGia >= MAX_USERS) {
-        cout << "Danh sach doc gia da day. Khong the them moi.\n";
+        cout << "[X] Danh sach doc gia da day. Khong the them moi.\n";
         return;
     }
 
@@ -98,6 +98,12 @@ void themDocGia() {
 
     cout << "Nhap ma doc gia: ";
     cin.getline(maDocGia[soLuongDocGia], 10);
+
+    if (tonTaiMaDocGia(maDocGia[soLuongDocGia])) {
+        cout << "[X] Ma doc gia da ton tai. Khong the them moi.\n";
+        return;
+    }
+
     cout << "Nhap ho ten: ";
     cin.getline(hoTen[soLuongDocGia], 100);
     cout << "Nhap CMND: ";
@@ -114,6 +120,7 @@ void themDocGia() {
     cin.getline(ngayLapThe[soLuongDocGia], 11);
 
     calculateExpiryDate(ngayLapThe[soLuongDocGia], ngayHetHan[soLuongDocGia]);
+    cout << "Ngay het han (dd/mm/yyyy): " << ngayHetHan[soLuongDocGia] << endl;
 
     soLuongDocGia++;
     cout << "[OK] Them doc gia thanh cong!\n";
@@ -133,24 +140,21 @@ void chinhSuaDocGia() {
         }
     }
     if (index == -1) {
-        cout << "Doc gia co ma " << id << " khong ton tai.\n";
+        cout << "[X] Doc gia co ma " << id << " khong ton tai.\n";
         return;
     }
 
     cin.ignore();
+    cout << "Nhap thong tin doc gia " << id << " can chinh sua:\n";
 
-    cout << "Nhap thong tin doc gia can chinh sua:\n";
-
-    cout << "Nhap ma doc gia: ";
-    cin.getline(maDocGia[index], 10);
     cout << "Nhap ho ten: ";
     cin.getline(hoTen[index], 100);
     cout << "Nhap CMND: ";
     cin.getline(cmnd[index], 20);
     cout << "Nhap ngay sinh (dd/mm/yyyy): ";
-    cin.getline(birth[soLuongDocGia], 11);
+    cin.getline(birth[index], 11);
     cout << "Nhap gioi tinh (Nam/Nu): ";
-    cin.getline(gioiTinh[soLuongDocGia], 5);
+    cin.getline(gioiTinh[index], 5);
     cout << "Nhap email: ";
     cin.getline(email[index], 100);
     cout << "Nhap dia chi: ";
@@ -159,6 +163,7 @@ void chinhSuaDocGia() {
     cin.getline(ngayLapThe[index], 11);
 
     calculateExpiryDate(ngayLapThe[index], ngayHetHan[index]);
+    cout << "Ngay het han (dd/mm/yyyy): " << ngayHetHan[index] << endl;
 
     cout << "[OK] Chinh sua doc gia thanh cong!\n";
 };
@@ -178,7 +183,7 @@ void xoaDocGia() {
     }
 
     if (index == -1) {
-        cout << "Doc gia co ma " << id << " khong ton tai.\n";
+        cout << "[X] Doc gia co ma " << id << " khong ton tai.\n";
         return;
     }
 

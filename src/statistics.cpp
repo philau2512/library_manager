@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string.h>
-#include <math.h>
 using namespace std;
 #include "statistics.h"
 #include "user.h"
@@ -126,6 +125,9 @@ void thongKeSoSachDangDuocMuon() {
 void thongKeDanhSachDocGiaBiTreHan() {
     cout << "Danh sach doc gia bi tre han: " << endl;
     bool hasUser = false;
+    int indexMuon = 0;
+    int indexTra = 0;
+    int count = 0;
 
     for (int i = 0; i < soLuongDocGia; i++) {
         // Kiểm tra xem độc giả có phiếu trả hay không
@@ -134,6 +136,8 @@ void thongKeDanhSachDocGiaBiTreHan() {
         // Kiểm tra xem mã độc giả có tồn tại trong phiếu trả không
         for (int j = 0; j < MAX_RETURN_RECORDS; j++) {
             if (strcmp(maDocGia[i], maDocGiaTra[j]) == 0) {
+                indexMuon = i;
+                indexTra = j;
                 hasReturned = true; // Nếu có phiếu trả
                 break;
             }
@@ -141,16 +145,19 @@ void thongKeDanhSachDocGiaBiTreHan() {
 
         // Nếu có phiếu trả, kiểm tra trễ hạn
         if (hasReturned) {
-            int daysDiff = isExpired(ngayMuon[i], ngayTraThucTe[i]);
+            int daysDiff = isExpired(ngayMuon[indexMuon], ngayTraThucTe[indexTra]);
             if (daysDiff > 0) {
                 hasUser = true;
-                cout << "[" << i + 1 << "] " << maDocGia[i] << " - " << hoTen[i] << " - tre " << daysDiff << " ngay" <<
+                count++;
+                cout << "[*] " << maDocGia[i] << " - " << hoTen[i] << " - tre " << daysDiff << " ngay" <<
                         endl;
             }
         }
     }
     if (!hasUser) {
         cout << "Khong co doc gia bi tre han." << endl;
+    } else {
+        cout << "Co " << count << " doc gia bi tre han." << endl;
     }
 
     cout << endl;

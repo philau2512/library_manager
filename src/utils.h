@@ -10,6 +10,6 @@ void calculateExpiryDate(const char *startDate, char *expiryDate);
 void tinhNgayTraSachDuKien(const char *startDate, char *expiryDate);
 
 // Hàm tính xem ngày trả thực tế - ngày mượn xem có > 7 không, trả về số ngày quá hạn
-int isExpired(const char *ngayMuon, const char* ngayTraThucTe);
+int countExpiredDay(const char *ngayMuon, const char* ngayTraThucTe);
 
 #endif //UTILS_H

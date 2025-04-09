@@ -54,7 +54,7 @@ void lapPhieuTraSach() {
 
     int indexPhieuMuon = timPhieuMuon(maDocGiaTra[soLuongPhieuTra]);
     if (indexPhieuMuon == -1) {
-        cout << "Doc gia khong co phieu muon sach." << endl;
+        cout << "[X] Doc gia khong co phieu muon sach." << endl;
         return;
     }
 

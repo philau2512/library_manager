@@ -145,7 +145,7 @@ void thongKeDanhSachDocGiaBiTreHan() {
 
         // Nếu có phiếu trả, kiểm tra trễ hạn
         if (hasReturned) {
-            int daysDiff = isExpired(ngayMuon[indexMuon], ngayTraThucTe[indexTra]);
+            int daysDiff = countExpiredDay(ngayMuon[indexMuon], ngayTraThucTe[indexTra]);
             if (daysDiff > 0) {
                 hasUser = true;
                 count++;

@@ -57,7 +57,7 @@ void tinhNgayTraSachDuKien(const char *startDate, char *expiryDate) {
     sprintf(expiryDate, "%02d/%02d/%d", day, month, year);
 }
 
-int isExpired(const char *ngayMuon, const char *ngayTraThucTe) {
+int countExpiredDay(const char *ngayMuon, const char *ngayTraThucTe) {
     int dayMuon, monthMuon, yearMuon;
     int dayTra, monthTra, yearTra;
     sscanf(ngayMuon, "%d/%d/%d", &dayMuon, &monthMuon, &yearMuon);

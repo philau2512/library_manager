@@ -4,6 +4,7 @@ using namespace std;
 #include "return.h"
 #include "borrow.h"
 #include "book.h"
+#include "utils.h"
 
 // Mảng dữ liệu mẫu
 char maDocGiaTra[MAX_RETURN_RECORDS][MAX_DOC_GIA_ID_LENGTH] = {"DG001"};
@@ -77,6 +78,12 @@ void lapPhieuTraSach() {
 
     soLuongPhieuTra++;
     cout << "[OK] Lap phieu tra thanh cong !" << endl;
+
+    int daysDiff = countExpiredDay(ngayMuon[indexPhieuMuon], ngayTraThucTe[soLuongPhieuTra - 1]);
+    if (daysDiff > 0) {
+        cout << "[X] Doc gia " << maDocGiaTra[soLuongPhieuTra - 1] << " da tre han " << daysDiff << " ngay." << endl;
+        cout << "---> So tien phai tra: " << daysDiff * 5000 << " VND" << endl;
+    }
 }
 
 void hienThiPhieuTra() {

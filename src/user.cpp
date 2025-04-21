@@ -140,12 +140,11 @@ void chinhSuaDocGia() {
         }
     }
     if (index == -1) {
-        cout << "[X] Doc gia co ma " << id << " khong ton tai.\n";
+        cout << "[X] Doc gia co ma " << id << " khong ton tai." << endl;
         return;
     }
 
-    cin.ignore();
-    cout << "Nhap thong tin doc gia " << id << " can chinh sua:\n";
+    cout << "Nhap thong tin doc gia " << id << " can chinh sua:" << endl;
 
     cout << "Nhap ho ten: ";
     cin.getline(hoTen[index], 100);
@@ -165,7 +164,7 @@ void chinhSuaDocGia() {
     calculateExpiryDate(ngayLapThe[index], ngayHetHan[index]);
     cout << "Ngay het han (dd/mm/yyyy): " << ngayHetHan[index] << endl;
 
-    cout << "[OK] Chinh sua doc gia thanh cong!\n";
+    cout << "[OK] Chinh sua doc gia thanh cong!" << endl;
 };
 
 void xoaDocGia() {
@@ -183,7 +182,7 @@ void xoaDocGia() {
     }
 
     if (index == -1) {
-        cout << "[X] Doc gia co ma " << id << " khong ton tai.\n";
+        cout << "[X] Doc gia co ma " << id << " khong ton tai." << endl;
         return;
     }
 
@@ -203,7 +202,7 @@ void xoaDocGia() {
     // Trừ 1 độc giả
     soLuongDocGia--;
 
-    cout << "[OK] Xoa doc gia thanh cong!\n";
+    cout << "[OK] Xoa doc gia thanh cong!" << endl;
 };
 
 void timDocGiaTheoCmnd() {
@@ -212,7 +211,7 @@ void timDocGiaTheoCmnd() {
     cin.getline(cmndToFind, 20);
 
     bool found = false;
-    cout << "Danh sach doc gia co CMND " << cmndToFind << ":\n";
+    cout << "Danh sach doc gia co CMND " << cmndToFind << ":" << endl;
     cout << "STT | Ma doc gia | Ho ten | CMND | Birthday | Gioi tinh | Email | Dia chi | Ngay lap the | Ngay het han\n";
     for (int i = 0; i < soLuongDocGia; i++) {
         if (strcmp(cmnd[i], cmndToFind) == 0) {
@@ -225,13 +224,13 @@ void timDocGiaTheoCmnd() {
                     << email[i] << " | "
                     << diaChi[i] << " | "
                     << ngayLapThe[i] << " | "
-                    << ngayHetHan[i] << "\n";
+                    << ngayHetHan[i] << endl;
             found = true;
             break;
         }
     }
     if (!found) {
-        cout << "Khong tim thay doc gia co CMND " << cmndToFind << ".\n";
+        cout << "Khong tim thay doc gia co CMND " << cmndToFind << endl;
     }
     cout << endl;
 };
@@ -242,7 +241,7 @@ void timDocGiaTheoHoTen() {
     cin.getline(hoTenToFind, 100);
 
     bool found = false;
-    cout << "Danh sach doc gia co ten - " << hoTenToFind << ":\n";
+    cout << "Danh sach doc gia co ten - " << hoTenToFind << endl;
     cout << "STT | Ma doc gia | Ho ten | CMND | Birthday | Gioi tinh | Email | Dia chi | Ngay lap the | Ngay het han\n";
 
     // dùng strstr để lấy tên gần đúng || dùng strcmp để tìm chính xác tên
@@ -257,12 +256,12 @@ void timDocGiaTheoHoTen() {
                     << email[i] << " | "
                     << diaChi[i] << " | "
                     << ngayLapThe[i] << " | "
-                    << ngayHetHan[i] << "\n";
+                    << ngayHetHan[i] << endl;
             found = true;
         }
     }
     if (!found) {
-        cout << "Khong tim thay doc gia co ten " << hoTenToFind << ".\n";
+        cout << "Khong tim thay doc gia co ten " << hoTenToFind << endl;
     }
     cout << endl;
 };

@@ -57,15 +57,10 @@ void quanLySach() {
                 }
                 break;
             case 6:
-                indexBook = timSachTheoTen();
-                if (indexBook == -1) {
-                    cout << "[X] Khong tim thay sach !." << endl;
-                } else {
-                    printBookInfo(indexBook);
-                }
+                timSachTheoTen();
                 break;
             case 0:
-                cout << "Quay lai menu chinh...\n";
+                cout << "Quay lai menu chinh..." << endl;
                 break;
             default:
                 cout << "Lua chon khong hop le. Vui long chon lai.\n";
@@ -75,11 +70,11 @@ void quanLySach() {
 
 void xemSach() {
     if (soLuongSach == 0) {
-        cout << "Danh sach sach rong.\n";
+        cout << "Danh sach sach rong." << endl;
         return;
     }
-    cout << "Danh sach sach:\n";
-    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong\n";
+    cout << "Danh sach sach:" << endl;
+    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong" << endl;
     for (int i = 0; i < soLuongSach; i++) {
         cout << "[" << i + 1 << "]" << " | "
                 << maSach[i] << " | "
@@ -89,23 +84,23 @@ void xemSach() {
                 << namXuatBan[i] << " | "
                 << theLoai[i] << " | "
                 << giaSach[i] << " | "
-                << soLuong[i] << "\n";
+                << soLuong[i] << endl;
     }
     cout << endl;
 }
 
 void themSach() {
     if (soLuongSach >= MAX_BOOKS) {
-        cout << "[X] Danh sach sach day. Khong the them moi.\n";
+        cout << "[X] Danh sach sach day. Khong the them moi." << endl;
         return;
     }
-    cout << "Nhap thong tin sach moi:\n";
+    cout << "Nhap thong tin sach moi:" << endl;
 
     cout << "Ma Sach: ";
     cin.getline(maSach[soLuongSach], 10);
 
     if (tonTaiMaSach(maSach[soLuongSach])) {
-        cout << "[X] Ma sach da ton tai. Khong the them moi.\n";
+        cout << "[X] Ma sach da ton tai. Khong the them moi." << endl;
         return;
     }
 
@@ -125,7 +120,7 @@ void themSach() {
     cin >> soLuong[soLuongSach];
 
     soLuongSach++;
-    cout << "[OK] Them sach moi thanh cong!\n";
+    cout << "[OK] Them sach moi thanh cong!" << endl;
 }
 
 void chinhSuaSach() {
@@ -142,11 +137,11 @@ void chinhSuaSach() {
         }
     }
     if (index == -1) {
-        cout << "Khong tim thay sach co ma '" << maSachToEdit << "'.\n";
+        cout << "Khong tim thay sach co ma '" << maSachToEdit << "'." << endl;
         return;
     }
 
-    cout << "Nhap thong tin sach " << maSachToEdit<< " muon chinh sua:\n";
+    cout << "Nhap thong tin sach " << maSachToEdit << " muon chinh sua:" << endl;
 
     cout << "Ten Sach: ";
     cin.getline(tenSach[index], 100);
@@ -163,7 +158,7 @@ void chinhSuaSach() {
     cout << "So Luong: ";
     cin >> soLuong[index];
 
-    cout << "[OK] Chinh sua sach co ISBN " << maSachToEdit << " thanh cong!\n";
+    cout << "[OK] Chinh sua sach co ISBN " << maSachToEdit << " thanh cong!" << endl;
 }
 
 void xoaSach() {
@@ -180,7 +175,7 @@ void xoaSach() {
         }
     }
     if (index == -1) {
-        cout << "Khong tim thay sach co ma '" << maSachToDelete << "'.\n";
+        cout << "Khong tim thay sach co ma '" << maSachToDelete << "'." << endl;
         return;
     }
 
@@ -197,7 +192,7 @@ void xoaSach() {
     }
 
     soLuongSach--;
-    cout << "[OK] Xoa sach co ISBN " << maSachToDelete << " thanh cong!\n";
+    cout << "[OK] Xoa sach co ISBN " << maSachToDelete << " thanh cong!" << endl;
 }
 
 int timSachTheoISBN() {
@@ -216,7 +211,7 @@ int timSachTheoISBN() {
     return foundIndex;
 }
 
-int timSachTheoTen() {
+void timSachTheoTen() {
     char tenSachToSearch[100];
     cout << "Nhap ten sach can tim: ";
     cin.getline(tenSachToSearch, 100);
@@ -233,10 +228,21 @@ int timSachTheoTen() {
 
         if (strstr(temp, tenSachToSearch) != NULL) {
             foundIndex = i;
-            break;
+            cout << "[" << foundIndex + 1 << "]" << " | "
+                    << maSach[foundIndex] << " | "
+                    << tenSach[foundIndex] << " | "
+                    << tacGia[foundIndex] << " | "
+                    << nhaXuatBan[foundIndex] << " | "
+                    << namXuatBan[foundIndex] << " | "
+                    << theLoai[foundIndex] << " | "
+                    << giaSach[foundIndex] << " | "
+                    << soLuong[foundIndex] << endl;
+            cout << endl;
         }
     }
-    return foundIndex;
+    if (foundIndex == -1) {
+        cout << "Khong tim thay sach co ten '" << tenSachToSearch << "'." << endl;
+    }
 }
 
 bool tonTaiMaSach(const char *id) {
@@ -278,7 +284,7 @@ bool tangSoLuongSach(const char *id) {
 }
 
 void printBookInfo(int index) {
-    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong\n";
+    cout << "STT | Ma Sach | Ten Sach | Tac Gia | Nha Xuat Ban | Nam Xuat Ban | The Loai | Gia Sach | So Luong" << endl;
     cout << "[" << index + 1 << "]" << " | "
             << maSach[index] << " | "
             << tenSach[index] << " | "
@@ -287,6 +293,6 @@ void printBookInfo(int index) {
             << namXuatBan[index] << " | "
             << theLoai[index] << " | "
             << giaSach[index] << " | "
-            << soLuong[index] << "\n";
+            << soLuong[index] << endl;
     cout << endl;
 }

@@ -24,7 +24,7 @@ void themSach(); // Thêm sách mới
 void chinhSuaSach(); // Chỉnh sửa sách
 void xoaSach(); // Xóa sách
 int timSachTheoISBN(); // Tìm sách theo mã sách trả về index
-int timSachTheoTen(); // Tìm sách theo tên sách trả về index
+void timSachTheoTen(); // Tìm sách theo tên sách
 
 bool tonTaiMaSach(const char *id); // kiểm tra sự tồn tại của mã sách ( true/false )
 bool coTheMuonSach(const char *id); // Kiểm tra nếu số lượng sách > 0 thì cho mượn !
